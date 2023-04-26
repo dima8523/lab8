@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -23,8 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.topic3.android.reddit.R
-
 import com.topic3.android.reddit.theme.RedditThemeSettings
+
 
 /**
  * Представляет корневую композицию для панели приложений, используемой на экранах.
@@ -72,6 +71,7 @@ private fun AppDrawerHeader() {
       text = stringResource(R.string.default_username),
       color = MaterialTheme.colors.primaryVariant
     )
+    ProfileInfo()
   }
   Divider(
     color = MaterialTheme.colors.onSurface.copy(alpha = .2f),
@@ -79,6 +79,8 @@ private fun AppDrawerHeader() {
       start = 16.dp, end = 16.dp, top = 16.dp
     )
   )
+
+
 }
 
 @Composable
@@ -87,7 +89,8 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
   ConstraintLayout(
     modifier = modifier
       .fillMaxWidth()
-      .padding(top = 16.sp)
+      .padding(top = 16.dp)
+
   ){
     val (karmaItem, divider, ageItem) = createRefs()
     val colors = MaterialTheme.colors
@@ -105,7 +108,7 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
     Divider(
       modifier = modifier
         .width(1.dp)
-        .constrainAs(divider){
+        .constrainAs(divider) {
           centerVerticallyTo(karmaItem)
           centerHorizontallyTo(parent)
           height = Dimension.fillToConstraints
