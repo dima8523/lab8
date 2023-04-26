@@ -216,6 +216,19 @@ private fun ScreenNavigationButton(
 @Composable
 private fun AppDrawerFooter(modifier: Modifier = Modifier) {
   //TODO add your code here
+  ConstraintLayout(
+    modifier = modifier
+      .fillMaxSize()
+      .padding(
+        start = 16.dp,
+        bottom = 16.dp,
+        end = 16.dp
+      )
+  ) {
+    val colors = MaterialTheme.colors
+    val (settingsImage, settingsText, darkModeButton) = createRefs()
+
+  }
 }
 
 private fun changeTheme() {
