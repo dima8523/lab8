@@ -139,6 +139,24 @@ private fun ProfileInfoItem(
   modifier: Modifier
 ) {
   //TODO add your code here
+  val colors = MaterialTheme.colors
+
+  ConstraintLayout(modifier = Modifier) {
+    val (iconRef, aamountRef, titleRef) = createRefs()
+    val itemModifier = Modifier
+
+    Icon(
+      contentDescription = stringResource(id = textResourceId),
+      imageVector = iconAsset,
+      tint = Color.Blue,
+      modifier = itemModifier
+        .constrainAs(iconRef){
+          centerVerticallyTo(parent)
+          start.linkTo(parent.start)
+        }
+        .padding(start = 16.dp)
+    )
+  }
 }
 
 /**
@@ -229,7 +247,7 @@ private fun AppDrawerFooter(modifier: Modifier = Modifier) {
       contentDescription = stringResource(id = R.string.change_theme),
       modifier = modifier
         .clickable(onClick = { changeTheme() })
-        .constrainAs(darkModeButton){
+        .constrainAs(darkModeButton) {
           end.linkTo(parent.end)
           bottom.linkTo(settingsImage.bottom)
         },
