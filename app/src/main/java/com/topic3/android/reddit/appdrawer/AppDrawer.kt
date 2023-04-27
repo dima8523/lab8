@@ -151,13 +151,19 @@ private fun ProfileInfoItem(
       tint = Color.Blue,
       modifier = itemModifier
     )
+    Text(
+      text = stringResource(amountResourceId),
+      color = colors.primaryVariant,
+      fontSize = 10.sp,
+      modifier = itemModifier
+    )
             Text(
               text = stringResource(id = amountResourceId),
               color = colors.primaryVariant,
               fontSize = 10.sp,
               modifier = itemModifier
                 .padding(start = 8.dp)
-                .constrainAs(amountRef){
+                .constrainAs(amountRef) {
                   top.linkTo(iconRef.top)
                   start.linkTo(iconRef.end)
                   bottom.linkTo(titleRef.top)
