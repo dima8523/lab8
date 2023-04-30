@@ -130,7 +130,6 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
 
   }
 
-
 @Composable
 private fun ProfileInfoItem(
   iconAsset: ImageVector,
@@ -138,13 +137,11 @@ private fun ProfileInfoItem(
   textResourceId: Int,
   modifier: Modifier
 ) {
-  //TODO add your code here
   val colors = MaterialTheme.colors
 
-  ConstraintLayout(modifier = Modifier) {
+  ConstraintLayout(modifier=modifier) {
     val (iconRef, amountRef, titleRef) = createRefs()
     val itemModifier = Modifier
-
     Icon(
       contentDescription = stringResource(id = textResourceId),
       imageVector = iconAsset,
@@ -156,7 +153,6 @@ private fun ProfileInfoItem(
         }
         .padding(start = 16.dp)
     )
-
     Text(
       text = stringResource(amountResourceId),
       color = colors.primaryVariant,
@@ -169,21 +165,21 @@ private fun ProfileInfoItem(
           bottom.linkTo(titleRef.top)
         }
     )
-            Text(
-              text = stringResource(textResourceId),
-              color = Color.Gray,
-              fontSize = 10.sp,
-              modifier = itemModifier
-                .padding(start = 8.dp)
-                .constrainAs(titleRef) {
-                  top.linkTo(amountRef.bottom)
-                  start.linkTo(iconRef.end)
-                  bottom.linkTo(iconRef.bottom)
-                }
-
+    Text(
+      text = stringResource(textResourceId),
+      color = Color.Gray,
+      fontSize = 10.sp,
+      modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(titleRef) {
+          top.linkTo(amountRef.bottom)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(iconRef.bottom)
+        }
     )
   }
 }
+
 
 /**
  * Представляет действия drawer приложения:
@@ -203,7 +199,8 @@ private fun AppDrawerBody(closeDrawerAction: () -> Unit) {
     ScreenNavigationButton(
       icon = Icons.Filled.Home,
       label = stringResource(R.string.saved),
-      onClickAction = { closeDrawerAction()
+      onClickAction = {
+        closeDrawerAction()
       }
     )
   }
