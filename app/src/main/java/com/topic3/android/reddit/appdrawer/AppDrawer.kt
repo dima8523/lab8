@@ -150,7 +150,7 @@ private fun ProfileInfoItem(
       imageVector = iconAsset,
       tint = Color.Blue,
       modifier = itemModifier
-        .constrainAs(iconRef){
+        .constrainAs(iconRef) {
           centerVerticallyTo(parent)
           start.linkTo(parent.start)
         }
@@ -163,7 +163,7 @@ private fun ProfileInfoItem(
       fontSize = 10.sp,
       modifier = itemModifier
         .padding(start = 8.dp)
-        .constrainAs(amountRef){
+        .constrainAs(amountRef) {
           top.linkTo(iconRef.top)
           start.linkTo(iconRef.end)
           bottom.linkTo(titleRef.top)
@@ -264,20 +264,26 @@ private fun AppDrawerFooter(modifier: Modifier = Modifier) {
   //TODO add your code here
   ConstraintLayout(
     modifier = modifier
+      .fillMaxSize()
+      .padding(
+        start = 16.dp,
+        bottom = 16.dp,
+        end = 16.dp
+      )
 
   ) {
     val colors = MaterialTheme.colors
     val (settingsImage, settingsText, darkModeButton) = createRefs()
     Icon(
-      imageVector = ImageVector.vectorResource(id = R.drawable.ic_moon),
-      contentDescription = stringResource(id = R.string.change_theme),
-      modifier = modifier
-        .clickable(onClick = { changeTheme() })
-        .constrainAs(darkModeButton) {
-          end.linkTo(parent.end)
-          bottom.linkTo(settingsImage.bottom)
-        },
+      modifier = modifier.constrainAs(settingsImage){
+        start.linkTo(parent.start)
+        bottom.linkTo(parent.bottom)
+      },
+      imageVector = Icons.Default.Settings,
+      contentDescription = stringResource(R.string.settings
+      ),
       tint = colors.primaryVariant
+
     )
     Text(
       fontSize = 10.sp,
@@ -290,6 +296,17 @@ private fun AppDrawerFooter(modifier: Modifier = Modifier) {
           start.linkTo(settingsImage.end)
           centerVerticallyTo(settingsImage)
         }
+    )
+    Icon(
+      imageVector = ImageVector.vectorResource(id = R.drawable.ic_moon),
+      contentDescription = stringResource(id = R.string.change_theme),
+      modifier = modifier
+        .clickable(onClick = { changeTheme() })
+        .constrainAs(darkModeButton) {
+          end.linkTo(parent.end)
+          bottom.linkTo(settingsImage.bottom)
+        },
+      tint = colors.primaryVariant
     )
   }
 }
