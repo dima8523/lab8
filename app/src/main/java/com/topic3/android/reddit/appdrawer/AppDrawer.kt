@@ -150,23 +150,35 @@ private fun ProfileInfoItem(
       imageVector = iconAsset,
       tint = Color.Blue,
       modifier = itemModifier
+        .constrainAs(iconRef){
+          centerVerticallyTo(parent)
+          start.linkTo(parent.start)
+        }
+        .padding(start = 16.dp)
     )
+
     Text(
       text = stringResource(amountResourceId),
       color = colors.primaryVariant,
       fontSize = 10.sp,
       modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(amountRef){
+          top.linkTo(iconRef.top)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(titleRef.top)
+        }
     )
             Text(
-              text = stringResource(id = amountResourceId),
-              color = colors.primaryVariant,
+              text = stringResource(textResourceId),
+              color = Color.Gray,
               fontSize = 10.sp,
               modifier = itemModifier
                 .padding(start = 8.dp)
-                .constrainAs(amountRef) {
-                  top.linkTo(iconRef.top)
+                .constrainAs(titleRef) {
+                  top.linkTo(amountRef.bottom)
                   start.linkTo(iconRef.end)
-                  bottom.linkTo(titleRef.top)
+                  bottom.linkTo(iconRef.bottom)
                 }
 
     )
